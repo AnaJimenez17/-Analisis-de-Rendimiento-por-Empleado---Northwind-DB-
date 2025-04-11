@@ -6,6 +6,7 @@ select top 10 O.OrderDate, E.FirstName+ ' '+ E.LastName as Empleado,
 	count(O.OrderID) AS Orden_Total,
 	count(P.UnitsInStock) as  Stock_Disponible,
 	sum(OD.Quantity) AS  Venta_Total,
+
     --Para calcular el porcentaje de ventas por empleados
 	Concat(CAST(ROUND(SUM(OD.Quantity) * 100.0 / SUM(SUM(OD.Quantity)) OVER (PARTITION BY E.EmployeeID), 2) AS DECIMAL(5, 2)), '%') AS Porcentaje_Venta,
 	
